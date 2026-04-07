@@ -2,6 +2,7 @@ package hu.unideb.inf.roomshoppinglist;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +34,16 @@ public class MainActivity extends AppCompatActivity {
                 .fallbackToDestructiveMigration(true)
                 .build();
 
-        ShoppingListItem sli = new ShoppingListItem();
-        sli.setId(1);
-        sli.setName("Alma");
-        shoppingListDatabase.shoppingListDAO().insertListItem(sli);
+        new Thread(() -> {
+            ShoppingListItem sli = new ShoppingListItem();
+            sli.setName("Alma");
+            shoppingListDatabase.shoppingListDAO().insertListItem(sli);
 
-        Log.d("CheckDB", shoppingListDatabase.shoppingListDAO().getAllItems().toString());
+            Log.d("CheckDB", shoppingListDatabase.shoppingListDAO().getAllItems().toString());
+        }).start();
+
+    }
+
+    public void addItem(View view) {
     }
 }

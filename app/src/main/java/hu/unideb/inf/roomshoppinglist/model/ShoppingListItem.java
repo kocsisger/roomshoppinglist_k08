@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import javax.annotation.processing.Generated;
+
 @Entity(tableName = "ShoppingList")
 public class ShoppingListItem {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     int id;
     String name;
