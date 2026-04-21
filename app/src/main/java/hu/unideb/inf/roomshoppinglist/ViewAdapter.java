@@ -38,11 +38,22 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
         return data.size();
     }
 
+    public List<ShoppingListItem> getData() {
+        return data;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ItemLayoutBinding binding;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ItemLayoutBinding.bind(itemView);
+            //itemView.setOnClickListener(view -> binding.itemTextView.setText("Done"));
+            itemView.setOnClickListener(
+                    view -> {
+                        data.get(getAdapterPosition()).setName("Done");
+                        notifyDataSetChanged();
+                    }
+            );
         }
 
         void setItemData(String dataItem){
